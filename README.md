@@ -4,6 +4,7 @@ For your unit 4 assessment you are required to Build a full front-end responsive
 
 By the due date of this assessment you must have what is stated in the [criteria](#assessment-criteria) pushed to your GitHub ready to be marked.
 
+## Preview
 ![Bookcase App](bookcaseapp.png)
 
 ## Assessment Criteria
@@ -11,14 +12,14 @@ By the due date of this assessment you must have what is stated in the [criteria
 Ensure your app has the following functionality:
 
 ### Functionality
-1. Load an initial set of suggested books from a local data store (JSON file) called `local-books.js` when the app start up.
+1. Load an initial set of suggested books from a local data store (JSON file) called `local-books.js` when the app starts up.
 1. Add a book to a local list of books (*The stored books do not have to persist across sessions. When you refresh the browser the application can reset.*).
-    - You application should contain one function called `addToBookcase()`
+    - The application should contain one function called `addToBookcase()`
     - Ensure you cannot add the same book more than once to your local list of books.
 1. Remove a book from a local list of books.
-    - You application should contain one function called `removeToBookcase()`
-1. Keep a count of the number of books in the bookcase and display in the `document.title` and on the page in a `h2` element. *You may wish to use useEffect to update the title on every app load*.
-1. Ensure your application is broken down into components. Each component should be a logical representation of objects in your application.
+    - The application should contain one function called `removeFromBookcase()`
+1. Keep a count of the number of books in your book list and display the counr in the `<title>` tag and on the page in a `<h2>` element. *Consider using the `useEffect()` hook to update the title on every render*.
+1. Ensure your application is broken down into components. Each component should be a logical representation of objects in your application (e.g. Book, BookList, Header, Search).
 
 **Expected App File Structure:**
 ```
@@ -48,13 +49,12 @@ Ensure your app has the following functionality:
 
 6. The app will connect to a third-party API provided by Google [(Books APIv1)](https://developers.google.com/books/docs/overview).
 
-1. Add a search bar to the home page of apl
-.
+1. Add a search form to the home page of the app (see [screenshot](#preview) above and [example app](#example-project) below).
 
-1. A user will be able to search for a book with the following criteria:
+1. A user should be able to search for a book with the following criteria:
     - Title of book
     - Name of author
-    - **Optional/Bonus:** Genre of book (e.g. Fiction, Romance, Crime, Horror), [see subject/inauthor](https://developers.google.com/books/docs/v1/using#PerformingSearch). 
+    - **Optional:** Genre of book (e.g. Fiction, Romance, Crime, Horror), [see subject/inauthor](https://developers.google.com/books/docs/v1/using#PerformingSearch). 
 
 ### Advanced Navigation
 
@@ -63,10 +63,11 @@ Ensure your app has the following functionality:
 
 ## Styling/Animation/Interactivity
 
-11. Add some animation to the books. Consider animating the selection and deselection of books
-1. An animated results count when the search returns more than one page of results. 
+11. Add some animation or transitions to the application, i.e.
+    - Consider animating the selection and deselection of books.
+    - An animated results count when the search returns more than one page of results. 
 1. Consider changing the look and feel of the search page compared to the personal books store
-1. Add a dark mode
+1. Add a dark mode to the app
 
 ## How to submit
 
