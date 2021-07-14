@@ -18,7 +18,7 @@ Ensure your app has the following functionality:
     - Ensure you cannot add the same book more than once to your local list of books.
 1. Remove a book from a local list of books.
     - The application should contain one function called `removeFromBookcase()`
-1. Keep a count of the number of books in your book list and display the counr in the `<title>` tag and on the page in a `<h2>` element. *Consider using the `useEffect()` hook to update the title on every render*.
+1. Keep a count of the number of books in your book list and display the count in the `<title>` tag and on the page in a `<h2>` element. *Consider using the `useEffect()` hook to update the title on every render*.
 1. Ensure your application is broken down into components. Each component should be a logical representation of objects in your application (e.g. Book, BookList, Header, Search).
 
 **Expected App File Structure:**
