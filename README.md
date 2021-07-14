@@ -12,7 +12,7 @@ By the due date of this assessment you must have what is stated in the [criteria
 Ensure your app has the following functionality:
 
 ### Functionality
-1. Load an initial set of suggested books from a local data store (JSON file) called `local-books.js` when the app starts up.
+1. Load an initial set of suggested books from a local data store (JSON file) called `local-books.json` when the app starts up.
 1. Add a book to a local list of books (*The stored books do not have to persist across sessions. When you refresh the browser the application can reset.*).
     - The application should contain one function called `addToBookcase()`
     - Ensure you cannot add the same book more than once to your local list of books.
