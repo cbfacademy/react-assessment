@@ -61,7 +61,7 @@ Ensure your app has the following functionality:
 9. Add pagination (next and previous buttons). *This will require storing the book data and page number in state, then only showing so many results per page*
 1. Add numbered pages and display the results of the search.
 
-## Styling/Animation/Interactivity
+### Styling/Animation/Interactivity
 
 11. Add some animation or transitions to the application, i.e.
     - Consider animating the selection and deselection of books.
