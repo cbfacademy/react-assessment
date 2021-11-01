@@ -29,107 +29,105 @@ The main functionality of the __Bookcase React App__ was the ability to `add` an
 
 Ensure your app has the following functionality:
 
-### Functionality
-1. The ability to load an initial set of suggested media from a local data store (JSON file). Either rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) or create your own `data.json` file. 
+### App File Structure:
+
+```
+- public/
+    |-- index.html
+- src/
+    |-- components/
+        |-- MovieItem.js*
+        |-- PodcastItem.js*
+        |-- <Other Items>*
+        |-- Basket.js
+        |-- MediaList.js
+        |-- Header.js
+        |-- Search.js
+    |-- models/
+        |-- data.json
+    |-- pages/
+        |-- About.js
+    |-- styles/
+        |-- App.css
+    |-- App.js
+    |-- index.js
+```
+### Components
+
+Ensure your application is broken down into components. Each component should be a logical representation of objects displayed in your application.
+
+### `App.js`
+This is the main component of your application. The following functions will be defined in this file: 
+- `addToBasket()`:
+    Allows **components** to be added to the `<Basket/>`
+
+- `removeFromBasket()`:
+    Allows **components** to be removed from the `<Basket/>`
+
+- `search()`:
+    Searches the iTunes API for the keywords entered by the user
+
+The `<App/>` **component** should be **rendered** in the `index.js` file.
+
+The App, when started should load an initial set of suggested items from a local data store (JSON file). Either rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) or create your own `data.json` file. 
+
+Each object in the items array should be converted into a **JSX component** when displayed in your app.
+
+The name of the **component** will depend on the **type** of the returned **component** (e.g. `<MovieItem/>`, `<MusicItem/>`,`<ShortFilmItem/>`). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned types.
+
+### `Search.js`
+Will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="keywords"/>` and a button to submit the form.
+
+The search should be available on each page/view of your app. The `form` when submitted will run your `search()` function. The `search()` function will return results of the [iTunes Search API](#itunes-search-api)
+
+Your app should display the results of the search in an element with the identifier `id="results"` e.g. `<div id="results"/>`.
+
+### `Basket.js`
+Users should be able to navigate to their basket and view all saved items. When their basket is empty a message should be displayed:
+
+```
+"Sorry, no items in basket" 
+```
+Users should be able to add items returned in the results from the iTunes search API and items in the `data.json` to their baskets.
+
+Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in an element with the identifier `id="total"`.
+
+```HTML
+<div id="total">£59.99</div>
+```
+
+Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the identifier `id=basketcount` e.g. 
     
-    Each object in the array should be converted into a **JSX component** when displayed in your app. 
-    
-    For example, in the  __Bookcase React App__ each JSON object in the `books.json` file is a **component** called `<Book/>`.
+```HTML
+<div id="basketcount">3 items</div>
+```
+*Consider using the `useEffect()` hook to update the title on every render*.
 
-    Ensure the list of items is displayed with the identifier `id="results"`, e.g.
+### `Header.js`, `About.js`
 
-    ```XML
-    <div id="results">
-        <MovieItem/>
-        <TvShowItem/>
-        ..
-        ..
-    </div>
-    ```
-    `<MovieItem/>` is an example of the component types you have created to display the results from the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_
+Allow a user to view an about page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the pages.
 
+Your finished app should contain three links with the following `id`s:
 
-1. The ability to add an **component** to a `<Basket/>` (*The stored items do not have to persist across sessions. When you refresh the browser the application can reset.*).
-    - The application should contain one function called `addToBasket()` in `App.js` which allows **components** to be added and removed from the `<Basket/>`
-    - Ensure you cannot add the same item more than once to your `<Basket/>`.
-
-1. The ability to remove a book from a local list of items.
-    - The application should contain one function called `removeFromList()` in `App.js` which allows **components** to be added and removed from the `<Basket/>`
-
-1. Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the id `basketcount` e.g. 
-    
-    ```HTML
-    <div id="basketcount">3 items</div>
-    ```
-    *Consider using the `useEffect()` hook to update the title on every render*.
-
-1. Ensure your application is broken down into components. Each component should be a logical representation of objects in your application. The name of the **component** will depend on the **type** of the returned component (e.g. MovieItem, Basket, Header, Search, MusicItem, ShortFilmItem). 
-
-    **Expected App File Structure:**
-    ```
-    - public/
-        |-- index.html
-    - src/
-        |-- components/
-            |-- MovieItem.js*
-            |-- PodcastItem.js*
-            |-- <Other Items>*
-            |-- Basket.js
-            |-- Header.js
-            |-- Search.js
-        |-- models/
-            |-- data.json
-        |-- pages/
-            |-- About.js
-        |-- styles/
-            |-- App.css
-        |-- App.js
-        |-- index.js
-    ```
-
-### Navigation
-
-5. Allow a user to view an about us page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder and `<Link/>` to the page should be available on every view of your app.
-
-    Your finished app should contain three links with the following `id`s:
-
-    ```XML
-    <Link id="homelink"/>
-    <Link id="basketlink"/>
-    <Link id="aboutlink"/>
-    ```
-
-### Search 
-
-6. The app will connect to a third-party API provided by iTunes _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_.
-
-1. Add a search form to the home page of the app.
-
-1. The search the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_ for a specific term using a *keyword*,e.g.
-    
-    ```sh
-    > curl https://itunes.apple.com/search?term=orange&limit=15    
-    ```
-
-    Will return top 15 results from the iTunes store containing the word `orange`.
-
-    Your app should display the results of the search in the `<div id="results"/>` element. Your search method should be called `search()` and available in the `App.js` file.
-
-    Your search should be available on each `'page'` of your app. The search text field should have the identifier `keywords`, e.g. `id="keywords".`. 
+```XML
+<Link id="homelink" path="/"/>
+<Link id="basketlink" path="basket"/>
+<Link id="aboutlink" path="about"/>
+```
 
 ## Additional Functionality (Optional)
 
-### Add Advanced Navigation
+### Advanced Navigation
 
-9. Add pagination (next and previous buttons). *This will require storing the book data and page number in state, then only showing so many results per page*
-1. Add numbered pages and display the results of the search.
+Add pagination (next and previous buttons). *This will require storing the book data and page number in state, then only showing so many results per page*
 
-## Animation/Interactivity
+Add numbered pages and display the results of the search.
 
-11. Add some animation or transitions to the application, i.e.
-    - Consider animating the selection and deselection of books.
-    - An animated results count when the search returns more than one page of results. 
-1. Add a dark mode to the app
+### Animation/Interactivity
+
+Add some animation or transitions to the application, i.e.
+- Consider animating the selection and deselection of books.
+- An animated results count when the search returns more than one page of results. 
 
 ## How to submit
 
@@ -141,13 +139,20 @@ The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentati
 
 An example of the output from a search can be found in the **models** folder [example-data.json](./models/example-data.json).
 
+The following example show a call to the API to search the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_ for the word `orange` using the `term` query with a `limit` of 15, e.g.
+    
+```sh
+> curl https://itunes.apple.com/search?term=orange&limit=15    
+```
+
+
 Use the following link to find out more details about how to use the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_.
 
-## ⚠️API Warning Notes:
+## ⚠️API Warnings:
 - To improve response times, minimize the number of search results the Search API returns by specifying an appropriate value for the limit parameter key.
 - The Search API is limited to approximately **20 calls per minute** (subject to change).
 
-**[See the iTunes API help guide for more information on expected types](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api)**
+**[See the iTunes API help guide for more information on limits](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api)**
 
 ## Example Project
 
