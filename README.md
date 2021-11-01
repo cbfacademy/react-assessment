@@ -52,6 +52,8 @@ Ensure your app has the following functionality:
     |-- App.js
     |-- index.js
 ```
+*_[See the iTunes API help guide for more information on returned types from the API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api)_
+
 ### Components
 
 Ensure your application is broken down into components. Each component should be a logical representation of objects displayed in your application.
