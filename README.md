@@ -1,6 +1,6 @@
 # React Assessment
 
-For your unit 4 assessment you will be building a Media Store App, that allows users to search the iTunes store for music, videos, TV shows and other media types.
+For your unit 4 assessment you will be building a Media Store App that allows users to search the iTunes store for music, videos, TV shows and other media types.
 
 This repository contains a basic React app. To install the basic packages needed to run the app, run the following command in your terminal:
 
@@ -12,31 +12,30 @@ This repository contains a basic React app. To install the basic packages needed
 
 The finished app should include the following functionality:
 
-- Users should have the ability to add and remove items from a basket. 
-- The basket should display the number of items.
-- The users should be able to search the iTunes Search API using a text search field.
+- A user should have the ability to add and remove items from a basket. 
+- The basket should display the number of items added.
+- A user should be able to search the iTunes Search API using a text search field and review a list of results.
+- A user should be able to add and remove items from the search results to and from their basket.
 - The app should have an About page explaining how to use the app and who designed it.
 
-By the due date of this assessment you must have what is stated in the [criteria](#assessment-criteria) pushed to GitHub ready to be marked.
+By the due date of this assessment you must have what is stated in the [criteria, detailed below,](#assessment-criteria) pushed to GitHub ready to be marked.
 
-### Understanding Criteria
-
-The tasks and homework throughout unit 4 explained how to build a __Bookcase React App__ to store books. The __Bookcase React App__ is an example of a __SPA (Single-Page App)__. The same functionality and concepts can be used in this assessment.
+The tasks and homework throughout unit 4 explain how to build a __Bookcase React App__ to store books. The __Bookcase React App__ is an example of a __SPA (Single-Page App)__. The same functionality and concepts can be used to build your Media Store app for this assessment.
 
 The main functionality of the __Bookcase React App__ was the ability to `add` and `remove` from a `<BookList/>` component and search a third party API. The __Bookcase React App__ also used the `BrowserRouter` module to create new pages.
 
 ## Assessment Criteria
 
-Ensure your app has the following functionality:
+Ensure your app has the following file structure and functionality:
 
-### App File Structure:
+### File Structure:
 
 ```
 - public/
     |-- index.html
 - src/
     |-- components/
-        |-- MediaItem.js*
+        |-- MediaItem.js
         |-- Basket.js
         |-- MediaResult.js
         |-- Header.js
@@ -50,9 +49,8 @@ Ensure your app has the following functionality:
     |-- App.js
     |-- index.js
 ```
-*_[See the iTunes API help guide for more information on returned types from the API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api)_
 
-### Components
+### Component Functionality
 
 Ensure your application is broken down into components. Each component should be a logical representation of objects displayed in your application.
 
@@ -67,13 +65,11 @@ This is the main component of your application. The following functions will be 
 - `search()`:
     Searches the iTunes API for the `terms` entered by the user
 
-The `<App/>` **component** should be **rendered** in the `index.js` file.
+When started, the app should load an initial set of items from a local JSON file. Rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) to `data.json` and load items from here into your `<MediaResults>` component. 
 
-The App, when started should load an initial set of suggested items from a local data store (JSON file). Either rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) or create your own `data.json` file. 
+Each object in the JSON file should be converted into a **JSX component** when displayed in your app.
 
-Each object in the items array should be converted into a **JSX component** when displayed in your app.
-
-The display of the **component** will depend on the **type** of the returned **component** (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned types.
+The display of the **component** will depend on the **kind** of item returned (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned kinds.
 
 Your app should display the objects in the `data.json` file in the `<MediaResult/>` *component*
 
