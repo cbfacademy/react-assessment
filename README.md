@@ -36,11 +36,9 @@ Ensure your app has the following functionality:
     |-- index.html
 - src/
     |-- components/
-        |-- MovieItem.js*
-        |-- PodcastItem.js*
-        |-- <Other Items>*
+        |-- MediaItem.js*
         |-- Basket.js
-        |-- MediaList.js
+        |-- MediaResult.js
         |-- Header.js
         |-- Search.js
     |-- models/
@@ -67,7 +65,7 @@ This is the main component of your application. The following functions will be 
     Allows **components** to be removed from the `<Basket/>`
 
 - `search()`:
-    Searches the iTunes API for the keywords entered by the user
+    Searches the iTunes API for the `terms` entered by the user
 
 The `<App/>` **component** should be **rendered** in the `index.js` file.
 
@@ -75,14 +73,18 @@ The App, when started should load an initial set of suggested items from a local
 
 Each object in the items array should be converted into a **JSX component** when displayed in your app.
 
-The name of the **component** will depend on the **type** of the returned **component** (e.g. `<MovieItem/>`, `<MusicItem/>`,`<ShortFilmItem/>`). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned types.
+The display of the **component** will depend on the **type** of the returned **component** (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned types.
 
-### `Search.js`
-Will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="keywords"/>` and a button to submit the form.
+Your app should display the objects in the `data.json` file in the `<MediaResult/>` *component*
 
-The search should be available on each page/view of your app. The `form` when submitted will run your `search()` function. The `search()` function will return results of the [iTunes Search API](#itunes-search-api)
+Each component should have a button to `Add to Basket`. When clicked the item should be removed from the current view and added to your `<Basket\>` component.
 
-Your app should display the results of the search in an element with the identifier `id="results"` e.g. `<div id="results"/>`.
+### `Search.js`, `MediaResult.js`
+Will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="term"/>` and a button to submit the form.
+
+The search should be available on the home page of your app. The `form` when submitted will run your `search()` function. The `search()` function will return results of the [iTunes Search API](#itunes-search-api)
+
+Your app should display the results of the search in an component called `<MediaResult/>` with the identifier `id="results"` e.g. `<div id="results"/>`.
 
 ### `Basket.js`
 Users should be able to navigate to their basket and view all saved items. When their basket is empty a message should be displayed:
@@ -98,6 +100,8 @@ Users should be able to see a running total/tally of the costs of the items in t
 <div id="total">£59.99</div>
 ```
 
+Each component in your `<Basket\>` should have a button to `Remove` from basket. When clicked the item should be removed from the `<Basket\>`.
+
 Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the identifier `id=basketcount` e.g. 
     
 ```HTML
@@ -109,12 +113,20 @@ Your app should keep a count of the number of items in your `<Basket/>` and disp
 
 Allow a user to view an about page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the pages.
 
-Your finished app should contain three links with the following `id`s:
+Your finished app should contain three `<Route/>` components with the following `id`s:
 
 ```XML
-<Link id="homelink" path="/"/>
-<Link id="basketlink" path="basket"/>
-<Link id="aboutlink" path="about"/>
+<Route path="/"/>
+<Route path="about"/>
+<Route path="basket"/>
+```
+
+To navigate the to the routes above, your `<Header/>` file should contain the following `<Link/>` components:
+
+```XML
+<Link to="/" id="homelink"> Home </Link> |
+<Link to="/about" id="aboutlink"> About </Link> |
+<Link to="/basket" id="basketlink"> Basket ({props.itemCount})</Link>
 ```
 
 ## Additional Functionality (Optional)
@@ -144,7 +156,7 @@ An example of the output from a search can be found in the **models** folder [ex
 The following example show a call to the API to search the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_ for the word `orange` using the `term` query with a `limit` of 15, e.g.
     
 ```sh
-> curl https://itunes.apple.com/search?term=orange&limit=15    
+> curl https://itunes.apple.com/search?term=orange&limit=30&explicit=no
 ```
 
 
