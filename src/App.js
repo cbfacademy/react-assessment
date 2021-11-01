@@ -9,11 +9,11 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://example-mediastore.netlify.app"
+          href="https://example-bookcase.netlify.app"
           target="_blank"
           rel="noopener noreferrer"
         >
-         View Example Media Store App
+         View Example Bookcase App
         </a>
       </header>
     </div>

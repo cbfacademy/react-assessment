@@ -167,4 +167,3 @@ Use the following link to find out more details about how to use the _[iTunes Se
 ## Example Project
 
 - [Example Bookcase App](https://example-bookcase.netlify.app)
-- [Example Media Store](https://example-mediastore.netlify.app)
