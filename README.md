@@ -71,24 +71,24 @@ Each object in the JSON file should be converted into a **JSX component** when d
 
 The display of the **component** will depend on the **kind** of item returned (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned kinds.
 
-Your app should display the objects in the `data.json` file in the `<MediaResult/>` *component*
+Your app should display the objects in the `data.json` file in the `<MediaResult/>` **component**
 
-Each component should have a button to `Add to Basket`. When clicked the item should be removed from the current view and added to your `<Basket\>` component.
+Each **component** should have a button to `Add to Basket`. When clicked the item should be removed from `<MediaResult/>` and added to your `<Basket\>` component.
 
 ### `Search.js`, `MediaResult.js`
-Will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="term"/>` and a button to submit the form.
+Search.js will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="term"/>` and a button to submit the form.
 
 The search should be available on the home page of your app. The `form` when submitted will run your `search()` function. The `search()` function will return results of the [iTunes Search API](#itunes-search-api)
 
 Your app should display the results of the search in an component called `<MediaResult/>` with the identifier `id="results"` e.g. `<div id="results"/>`.
 
 ### `Basket.js`
-Users should be able to navigate to their basket and view all saved items. When their basket is empty a message should be displayed:
+Users should be able to navigate to their `<Basket/>` and view all saved items. When their `<Basket/>` is empty a message should be displayed:
 
 ```
 "Sorry, no items in basket" 
 ```
-Users should be able to add items returned in the results from the iTunes search API and items in the `data.json` to their baskets.
+Users should be able to add items returned in the results from the iTunes Search API and items in the `data.json` to their `<Basket/>` component.
 
 Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in an element with the identifier `id="total"`.
 
@@ -96,7 +96,7 @@ Users should be able to see a running total/tally of the costs of the items in t
 <div id="total">£59.99</div>
 ```
 
-Each component in your `<Basket\>` should have a button to `Remove` from basket. When clicked the item should be removed from the `<Basket\>`.
+Each component in your `<Basket\>` should have a button to `remove` from basket. When clicked the item should be removed from the `<Basket\>`.
 
 Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the identifier `id=basketcount` e.g. 
     
@@ -107,7 +107,7 @@ Your app should keep a count of the number of items in your `<Basket/>` and disp
 
 ### `Header.js`, `About.js`
 
-Allow a user to view an about page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the pages.
+Allow a user to view an About page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
 
 Your finished app should contain three `<Route/>` components with the following `id`s:
 
@@ -117,7 +117,7 @@ Your finished app should contain three `<Route/>` components with the following 
 <Route path="basket"/>
 ```
 
-To navigate the to the routes above, your `<Header/>` file should contain the following `<Link/>` components:
+To navigate to the routes above, your `<Header/>` file should contain the following `<Link/>` components:
 
 ```XML
 <Link to="/" id="homelink"> Home </Link> |
