@@ -1,80 +1,195 @@
 # React Assessment
 
-For your unit 4 assessment you are required to Build a full front-end responsive React application for searching and storing books that you have read and want to read. The application will be called Bookcase. 
+For your unit 4 assessment you will be building a Media Store App that allows users to search the iTunes store for music, videos, TV shows and other media types.
 
-By the due date of this assessment you must have what is stated in the [criteria](#assessment-criteria) pushed to your GitHub ready to be marked.
+This repository contains a basic React app. To install the basic packages needed to run the app, run the following command in your terminal:
 
-## Preview
-![Bookcase App](bookcaseapp.png)
+```shell
+> npm install
+```
+
+## High-Level Criteria
+
+The finished app should include the following functionality:
+
+- A user should have the ability to add and remove items from a basket. 
+- The basket should display the number of items added.
+- A user should be able to search the iTunes Search API using a text search field and review a list of results.
+- A user should be able to add and remove items from the search results to and from their basket.
+- The app should have an About page explaining how to use the app and who designed it.
+
+By the due date of this assessment you must have what is stated in the [criteria, detailed below,](#assessment-criteria) pushed to GitHub ready to be marked.
+
+The tasks and homework throughout unit 4 explain how to build a __Bookcase React App__ to store books. The __Bookcase React App__ is an example of a __SPA (Single-Page App)__. The same functionality and concepts can be used to build your Media Store app for this assessment.
+
+The main functionality of the __Bookcase React App__ was the ability to `add` and `remove` from a `<BookList/>` component and search a third party API. The __Bookcase React App__ also used the `BrowserRouter` module to create new pages.
 
 ## Assessment Criteria
 
-Ensure your app has the following functionality:
+Ensure your app has the following file structure and functionality:
 
-### Functionality
-1. Load an initial set of suggested books from a local data store (JSON file) called `local-books.json` when the app starts up.
-1. Add a book to a local list of books (*The stored books do not have to persist across sessions. When you refresh the browser the application can reset.*).
-    - The application should contain one function called `addToBookcase()`
-    - Ensure you cannot add the same book more than once to your local list of books.
-1. Remove a book from a local list of books.
-    - The application should contain one function called `removeFromBookcase()`
-1. Keep a count of the number of books in your book list and display the count in the `<title>` tag and on the page in a `<h2>` element. *Consider using the `useEffect()` hook to update the title on every render*.
-1. Ensure your application is broken down into components. Each component should be a logical representation of objects in your application (e.g. Book, BookList, Header, Search).
+### File Structure:
 
-**Expected App File Structure:**
 ```
 - public/
     |-- index.html
 - src/
     |-- components/
-          |-- Book.js
-          |-- BookList.js
-          |-- Header.js
-          |-- Search.js
+        |-- Basket.js
+        |-- BasketCount.js
+        |-- BasketTotal.js
+        |-- Header.js
+        |-- Product.js
+        |-- ProductList.js
+        |-- Search.js
     |-- models/
-          |-- local-books.json
+        |-- data.json
     |-- pages/
-          |-- About.js
+        |-- About.js
     |-- styles/
-          |-- App.css
+        |-- App.css
     |-- App.js
     |-- index.js
 ```
 
-### Navigation
+### Component Functionality
 
-5. Allow a user to view an about us page called `About.js` explaining the application functionality.
+Ensure your application is broken down into components. Each component should be a logical representation of objects displayed in your application.
 
-### Search 
+### `App.js`
+This is the main component of your application. The following functions will be defined in this file: 
+- `addToBasket()`:
+    Allows **products** to be added to the `<Basket/>`
 
-6. The app will connect to a third-party API provided by Google [(Books APIv1)](https://developers.google.com/books/docs/overview).
+- `removeFromBasket()`:
+    Allows **products** to be removed from the `<Basket/>`
 
-1. Add a search form to the home page of the app (see [screenshot](#preview) above and [example app](#example-project) below).
+- `search()`:
+    Searches the iTunes API for the `terms` entered by the user
 
-1. A user should be able to search for a book with the following criteria:
-    - Title of book
-    - Name of author
-    - **Optional:** Genre of book (e.g. Fiction, Romance, Crime, Horror), [see subject/inauthor](https://developers.google.com/books/docs/v1/using#PerformingSearch). 
+When started, the app should load an initial set of items from a local JSON file. Rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) to `data.json` and load items from here into your `<ProductList/>` component. 
+
+Each object in the JSON file should be loaded into your `<Product/>` component.
+
+The display of the **product** will depend on the **kind** of item returned (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned kinds.
+
+Each **product** should have a button to `Add to Basket`. When clicked the item should be removed from `<ProductList/>` and added to your `<Basket/>` component.
+
+### `Search.js`, `ProductList.js`
+`Search.js` will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="term"/>` and a button to submit the form. 
+
+
+The search should be available on the home page of your app. Your search `<form/>` will need to have an `onSubmit()` handler that will call your `search()` function. The `search()` function will return results of the [iTunes Search API](#itunes-search-api)
+
+Your app should display the results of the search in an component called `<ProductList/>` with the identifier `id="results"` e.g. `<div id="results"/>`.
+
+### `Basket.js`
+Users should be able to navigate to their `<Basket/>` and view all saved items. When their `<Basket/>` is empty a message should be displayed:
+
+```
+"Sorry, no items in basket" 
+```
+Users should be able to add items returned in the results from the iTunes Search API and items in the `data.json` to their `<Basket/>` component.
+
+Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in an element with the identifier `id="total"`.
+
+```XML
+<BasketTotal>£59.99</BasketTotal>
+```
+
+Each component in your `<Basket/>` should have a button to `remove` from basket. When clicked the item should be removed from the `<Basket/>`.
+
+Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the identifier `id=basketcount` e.g. 
+    
+```XML
+<BasketCount>£59.99</BasketCount>
+```
+
+### `Header.js`, `About.js`
+
+Allow a user to view an About page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
+
+Your finished app should contain three `<Route/>` components with the following `id`s:
+
+```XML
+<Route path="/"/>
+<Route path="about"/>
+<Route path="basket"/>
+```
+
+To navigate to the routes above, your `<Header/>` file should contain the following `<Link/>` components:
+
+```XML
+<Link to="/" id="homelink"> Home </Link> |
+<Link to="/about" id="aboutlink"> About </Link> |
+<Link to="/basket" id="basketlink"> Basket ({props.itemCount})</Link>
+```
+
+## Product.js
+
+Expected **functions** and **props** for the `<Product/>` component are listed below:
+
+### Props
+
+Example expected props. Please note this is not an exhaustive list, but the minimum props required for assessment.
+
+```JSON
+{
+    "kind": "song",
+    "trackId": 1440760502,
+    "artistName": "Frank Ocean",
+    "trackName": "Thinkin Bout You",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/07/f1/2107f122-4b98-8431-823f-431c56457428/source/100x100bb.jpg",
+    "trackPrice": 1.29,
+    ...
+    ...
+  }
+```
+
+### Functions
+
+- addFromBasket
+- removeFromBasket
+
+## Additional Functionality (Optional)
 
 ### Advanced Navigation
 
-9. Add pagination (next and previous buttons). *This will require storing the book data and page number in state, then only showing so many results per page*
-1. Add numbered pages and display the results of the search.
+Add pagination (next and previous buttons). *This will require storing the book data and page number in state, then only showing so many results per page*
 
-### Styling/Animation/Interactivity
+Add numbered pages and display the results of the search.
 
-11. Add some animation or transitions to the application, i.e.
-    - Consider animating the selection and deselection of books.
-    - An animated results count when the search returns more than one page of results. 
-1. Consider changing the look and feel of the search page compared to the personal books store
-1. Add a dark mode to the app
+### Animation/Interactivity
+
+Add some animation or transitions to the application, i.e.
+- Consider animating the selection and deselection of books.
+- An animated results count when the search returns more than one page of results. 
 
 ## How to submit
 
 Commit all created/generated files and folders to the repo and push to your remote repo for assessment.
 
+## iTunes Search API
+
+The [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) can be searched for iTunes and Apple music, videos, TV show and other media.
+
+An example of the output from a search can be found in the **models** folder [example-data.json](./models/example-data.json).
+
+The following example show a call to the API to search the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_ for the word `orange` using the `term` query with a `limit` of 15, e.g.
+    
+```sh
+> curl https://itunes.apple.com/search?term=orange&limit=30&explicit=no
+```
+
+
+Use the following link to find out more details about how to use the _[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)_.
+
+## ⚠️API Warnings:
+- To improve response times, minimize the number of search results the Search API returns by specifying an appropriate value for the limit parameter key.
+- The Search API is limited to approximately **20 calls per minute** (subject to change).
+
+**[See the iTunes API help guide for more information on limits](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api)**
+
 ## Example Project
 
-- [Example Bookcase Application](https://example-bookcase.netlify.app)
-
-
+- [Example Bookcase App](https://example-bookcase.netlify.app)
