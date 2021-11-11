@@ -92,7 +92,7 @@ Users should be able to add items returned in the results from the iTunes Search
 Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in a `<BasketTotal />` component.
 
 ```XML
-<BasketTotal total={total} />
+<BasketTotal basketTotal={total} />
 ```
 
 Each item in your `<Basket/>` should have a button to `Remove from basket`. When clicked, the item should be removed from the `<Basket/>` and restored to the `<ProductList />` component.
@@ -100,7 +100,7 @@ Each item in your `<Basket/>` should have a button to `Remove from basket`. When
 Your app should keep a count of the number of items in your `<Basket/>` and display the count in a `<BasketCount />` component, e.g. 
     
 ```XML
-<BasketCount count={count} />
+<BasketCount basketCount={count} />
 ```
 
 Expected **functions** and **props** for the `<Product/>` component are listed below:
@@ -120,7 +120,7 @@ Example expected props. Please note this is not an exhaustive list, but the mini
 
 ### `Header.js`, `About.js`
 
-Allow a user to view an About page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
+Allow a user to view an About page called `About.js` explaining the application functionality. This page should contain a `<h1></h1>` element containing the title "About". The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
 
 Your finished app should contain three `<Route/>` components with the following paths:
 
@@ -159,6 +159,12 @@ Example expected props. Please note this is not an exhaustive list, but the mini
 
 ## ProductList.js
 
+When the `<ProductList/>` is empty a message should be displayed:
+
+```
+"No items found..." 
+```
+
 Expected **props** for the `<ProductList/>` component are listed below:
 
 ### Props
@@ -169,8 +175,7 @@ Example expected props. Please note this is not an exhaustive list, but the mini
 <ProductList
     items={items}
     addToBasket={addToBasket}
-    removeFromBasket={removeFromBasket}
-    itemCount={items.length} />
+    removeFromBasket={removeFromBasket} />
 ```
 
 ## Additional Functionality (Optional)
