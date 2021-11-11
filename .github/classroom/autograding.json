@@ -2,7 +2,7 @@
   "tests": [
     {
       "name": "Test acceptance criteria",
-      "setup": "npm ci",
+      "setup": "npm install",
       "run": "npm test",
       "input": "",
       "output": "",
