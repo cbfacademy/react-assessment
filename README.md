@@ -15,7 +15,7 @@ The finished app should include the following functionality:
 - A user should have the ability to add and remove items from a basket. 
 - The basket should display the number of items added.
 - A user should be able to search the iTunes Search API using a text search field and review a list of results.
-- A user should be able to add and remove items from the search results to and from their basket.
+- A user should be able to transfer items in the search results to and from their basket.
 - The app should have an About page explaining how to use the app and who designed it.
 
 By the due date of this assessment you must have what is stated in the [criteria, detailed below,](#assessment-criteria) pushed to GitHub ready to be marked.
@@ -59,23 +59,21 @@ Ensure your application is broken down into components. Each component should be
 ### `App.js`
 This is the main component of your application. The following functions will be defined in this file: 
 - `addToBasket()`:
-    Allows **products** to be added to the `<Basket/>`
+    Allows a **product** to be added to the `<Basket/>`
 
 - `removeFromBasket()`:
-    Allows **products** to be removed from the `<Basket/>`
+    Allows a **product** to be removed from the `<Basket/>`
 
 - `search()`:
     Searches the iTunes API for the `terms` entered by the user
 
-When started, the app should load an initial set of items from a local JSON file. Rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) to `data.json` and load items from here into your `<ProductList/>` component. 
+When started, the app should load an initial set of items from a local JSON file. Rename the example file [**`\src\models\example-data.json`**](.\src\models\example-data.json) to `data.json` and pass items from here into your `<ProductList/>` component. 
 
-Each object in the JSON file should be loaded into your `<Product/>` component.
-
-The display of the **product** will depend on the **kind** of item returned (e.g. `movie`, `music`,`shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned kinds.
+Each object in the JSON file should be rendered by your `<Product/>` component.
 
 Each **product** should have a button to `Add to Basket`. When clicked the item should be removed from `<ProductList/>` and added to your `<Basket/>` component.
 
-### `Search.js`, `ProductList.js`
+### `Search.js`
 `Search.js` will return a form with the following identifier `id="searchAPI"` e.g., `<form id="searchAPI">`. The form should have at least one text field for keyword input e.g. `<input id="term"/>` and a button to submit the form. 
 
 
@@ -91,25 +89,40 @@ Users should be able to navigate to their `<Basket/>` and view all saved items. 
 ```
 Users should be able to add items returned in the results from the iTunes Search API and items in the `data.json` to their `<Basket/>` component.
 
-Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in an element with the identifier `id="total"`.
+Users should be able to see a running total/tally of the costs of the items in their basket as well as the number of items. The total should be displayed in a `<BasketTotal />` component.
 
 ```XML
-<BasketTotal>£59.99</BasketTotal>
+<BasketTotal basketTotal={total} />
 ```
 
-Each component in your `<Basket/>` should have a button to `remove` from basket. When clicked the item should be removed from the `<Basket/>`.
+Each item in your `<Basket/>` should have a button to `Remove from basket`. When clicked, the item should be removed from the `<Basket/>` and restored to the `<ProductList />` component.
 
-Your app should keep a count of the number of items in your `<Basket/>` and display the count in an element with the identifier `id=basketcount` e.g. 
+Your app should keep a count of the number of items in your `<Basket/>` and display the count in a `<BasketCount />` component, e.g. 
     
 ```XML
-<BasketCount>£59.99</BasketCount>
+<BasketCount basketCount={count} />
+```
+
+Expected **functions** and **props** for the `<Product/>` component are listed below:
+
+### Props
+
+Example expected props. Please note this is not an exhaustive list, but the minimum props required for assessment.
+
+```XML
+<Basket
+    basket={basket}
+    addToBasket={addToBasket}
+    removeFromBasket={removeFromBasket}
+    basketCount={count}
+    basketTotal={total} />
 ```
 
 ### `Header.js`, `About.js`
 
-Allow a user to view an About page called `About.js` explaining the application functionality. The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
+Allow a user to view an About page called `About.js` explaining the application functionality. This page should contain a `<h1></h1>` element containing the title "About". The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
 
-Your finished app should contain three `<Route/>` components with the following `id`s:
+Your finished app should contain three `<Route/>` components with the following paths:
 
 ```XML
 <Route path="/"/>
@@ -127,29 +140,43 @@ To navigate to the routes above, your `<Header/>` file should contain the follow
 
 ## Product.js
 
-Expected **functions** and **props** for the `<Product/>` component are listed below:
+Expected **props** for the `<Product/>` component are listed below:
 
 ### Props
 
 Example expected props. Please note this is not an exhaustive list, but the minimum props required for assessment.
 
-```JSON
-{
-    "kind": "song",
-    "trackId": 1440760502,
-    "artistName": "Frank Ocean",
-    "trackName": "Thinkin Bout You",
-    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/21/07/f1/2107f122-4b98-8431-823f-431c56457428/source/100x100bb.jpg",
-    "trackPrice": 1.29,
-    ...
-    ...
-  }
+```XML
+<Product
+    kind={kind}
+    id={trackId}
+    name={trackName}
+    thumbnail={artworkUrl100}
+    price={trackPrice}
+    addToBasket={addToBasket}
+    removeFromBasket={removeFromBasket} />
 ```
 
-### Functions
+## ProductList.js
 
-- addFromBasket
-- removeFromBasket
+When the `<ProductList/>` is empty a message should be displayed:
+
+```
+"No items found..." 
+```
+
+Expected **props** for the `<ProductList/>` component are listed below:
+
+### Props
+
+Example expected props. Please note this is not an exhaustive list, but the minimum props required for assessment.
+
+```XML
+<ProductList
+    items={items}
+    addToBasket={addToBasket}
+    removeFromBasket={removeFromBasket} />
+```
 
 ## Additional Functionality (Optional)
 
@@ -164,6 +191,10 @@ Add numbered pages and display the results of the search.
 Add some animation or transitions to the application, i.e.
 - Consider animating the selection and deselection of books.
 - An animated results count when the search returns more than one page of results. 
+
+### Product Differentiation
+
+Modify the display of each **product** depending on the **kind** of item returned (e.g. `movie`, `music`, `shortfilm` etc). Read the [iTunes Search API Documentation](#itunes-search-api) for a list of returned kinds.
 
 ## How to submit
 
