@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React, { useState, Fragment } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Search from './components/Search'
 import ProductList from './components/ProductList'
@@ -50,31 +50,25 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    let basketCountLabel = `Basket: ${basket.length} item` + (basket.length===1?"":"s");
-    document.title = basketCountLabel;
-    document.getElementById("basketlink").innerText = basketCountLabel;
-  });
-
   return (
-    <Router>
+    <BrowserRouter>
       <div className="container">
         <Route exact path="/" render={() => (
           <Fragment>
             <Header basketCount={count} />
             <Search term={term} search={search} setTerm={setTerm}/>
-            <ProductList items={items} addToBasket={addToBasket} removeFromBasket={removeFromBasket} itemCount={items.length} />
+            <ProductList items={items} addToBasket={addToBasket} />
           </Fragment>
         )} />
         <Route path="/basket" render={() => (
           <Fragment>
             <Header basketCount={count} />
-            <Basket basket={basket} addToBasket={addToBasket} removeFromBasket={removeFromBasket} basketCount={count} basketTotal={total} />
+            <Basket basket={basket} removeFromBasket={removeFromBasket} basketCount={count} basketTotal={total} />
           </Fragment>
         )} />
         <Route path="/about" component={() => <About basketCount={count} />} />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

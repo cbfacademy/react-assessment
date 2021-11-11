@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const BasketCount = (props) => {
 
+  useEffect(() => {
+    let basketCountLabel = `Basket: ${props.basketCount} item` + (props.basketCount>1?"":"s");
+    document.title = basketCountLabel;
+  });
+
   return (
-    <div id="basketcount">
+    <span>
       {props.basketCount} item{props.basketCount!==1?"s":""}
-    </div>
+    </span>
   );
 }
 

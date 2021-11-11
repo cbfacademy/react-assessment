@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import BasketCount from './BasketCount';
 
 const Header = (props) => {
 
@@ -9,7 +10,7 @@ const Header = (props) => {
         <div id="breadcrumb">
           <Link to="/"> Home </Link> |
           <Link to="/about"> About </Link> |
-          <Link to="/basket" id="basketlink"> Basket: {props.basketCount} item{props.basketCount===1?"":"s"}</Link>
+          <Link to="/basket" id="basketlink"> Basket: <BasketCount basketCount={props.basketCount} /></Link>
         </div>
     </div>
   );
