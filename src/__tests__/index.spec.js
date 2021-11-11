@@ -1,14 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../../src/App';
-import { readFile } from '../utils.js';
+import '@testing-library/jest-dom';
+import { readFile } from '../../.autograding/utils.js';
 
-it('renders <App/> without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
-
-it("Expected files", () => {
+describe("Application structure", () => {
   test("/src/components/Basket.js found", () => {
     expect(readFile("/src/components/Basket.js")).toBeTruthy();
   });
@@ -43,11 +36,5 @@ it("Expected files", () => {
 
   test("/src/pages/About.js found", () => {
     expect(readFile("/src/pages/About.js")).toBeTruthy();
-  });
-});
-
-describe("Search function", () => {
-  test("it should search by a search term (link)", () => {
-    // actual test
   });
 });
