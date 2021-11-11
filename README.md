@@ -112,7 +112,6 @@ Example expected props. Please note this is not an exhaustive list, but the mini
 ```XML
 <Basket
     basket={basket}
-    addToBasket={addToBasket}
     removeFromBasket={removeFromBasket}
     basketCount={count}
     basketTotal={total} />
@@ -174,8 +173,7 @@ Example expected props. Please note this is not an exhaustive list, but the mini
 ```XML
 <ProductList
     items={items}
-    addToBasket={addToBasket}
-    removeFromBasket={removeFromBasket} />
+    addToBasket={addToBasket} />
 ```
 
 ## Additional Functionality (Optional)
