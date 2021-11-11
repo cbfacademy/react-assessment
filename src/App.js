@@ -9,7 +9,7 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://example-bookcase.netlify.app"
+          href="https://imusicstore.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
