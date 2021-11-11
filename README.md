@@ -117,7 +117,7 @@ Example expected props. Please note this is not an exhaustive list, but the mini
     basketTotal={total} />
 ```
 
-### `Header.js`, `About.js`
+### `About.js`
 
 Allow a user to view an About page called `About.js` explaining the application functionality. This page should contain a `<h1></h1>` element containing the title "About". The `About.js` should be created in the **pages** folder. Each view/page of the app should have relevant links to enable navigation between the the About page, the Basket and the Home page.
 
@@ -129,6 +129,8 @@ Your finished app should contain three `<Route/>` components with the following 
 <Route path="basket"/>
 ```
 
+### `Header.js`
+
 To navigate to the routes above, your `<Header/>` file should contain the following `<Link/>` components:
 
 ```XML
@@ -137,7 +139,7 @@ To navigate to the routes above, your `<Header/>` file should contain the follow
 <Link to="/basket" id="basketlink"> Basket ({props.itemCount})</Link>
 ```
 
-## Product.js
+## `Product.js`
 
 Expected **props** for the `<Product/>` component are listed below:
 
@@ -156,7 +158,7 @@ Example expected props. Please note this is not an exhaustive list, but the mini
     removeFromBasket={removeFromBasket} />
 ```
 
-## ProductList.js
+## `ProductList.js`
 
 When the `<ProductList/>` is empty a message should be displayed:
 
