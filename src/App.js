@@ -44,9 +44,34 @@ function App() {
   }
 
   async function search(value) {
-    const results = await fetch(`https://itunes.apple.com/search?term=${value}&limit=50&explicit=no`).then(res => res.json());
+    if (!value) {
+      setItems([
+        ...data.map((item) => {
+          item.inBasket = basket.find(
+            (basketItem) => basketItem.trackId === item.trackId
+          )
+            ? true
+            : false;
+
+          return item;
+        }),
+      ]);
+      setTerm("");
+
+      return;
+    }
+
+    const results = await fetch(
+      `https://itunes.apple.com/search?term=${value}&limit=50&explicit=no`
+    ).then((res) => res.json());
     if (!results.error) {
-      setItems(results.results.filter(result => result.trackName && basket.findIndex(item => result.id === item.trackId)===-1));
+      setItems(
+        results.results.filter(
+          (result) =>
+            result.trackName &&
+            basket.findIndex((item) => result.id === item.trackId) === -1
+        )
+      );
     }
   }
 
