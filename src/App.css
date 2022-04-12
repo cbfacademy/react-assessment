@@ -97,7 +97,7 @@ a{
   margin-right:5px;
 }
 #baskettotal::before{
-  content:"Total: £"
+  content:"Total: "
 }
 #baskettotal{
   font-size: 1.5em;

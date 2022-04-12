@@ -43,6 +43,14 @@ function App() {
     setCount(count-1);
   }
 
+  const formatCurrency = (value) => {
+    return value.toLocaleString("en-GB", {
+      style: "currency",
+      currency: "GBP",
+      minimumFractionDigits: 2,
+    });
+  };
+
   async function search(value) {
     if (!value) {
       setItems([
@@ -78,19 +86,36 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
-        <Route exact path="/" render={() => (
-          <Fragment>
-            <Header basketCount={count} />
-            <Search term={term} search={search} setTerm={setTerm}/>
-            <ProductList items={items} addToBasket={addToBasket} />
-          </Fragment>
-        )} />
-        <Route path="/basket" render={() => (
-          <Fragment>
-            <Header basketCount={count} />
-            <Basket basket={basket} removeFromBasket={removeFromBasket} basketCount={count} basketTotal={total} />
-          </Fragment>
-        )} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Fragment>
+              <Header basketCount={count} />
+              <Search term={term} search={search} setTerm={setTerm} />
+              <ProductList
+                items={items}
+                addToBasket={addToBasket}
+                formatCurrency={formatCurrency}
+              />
+            </Fragment>
+          )}
+        />
+        <Route
+          path="/basket"
+          render={() => (
+            <Fragment>
+              <Header basketCount={count} />
+              <Basket
+                basket={basket}
+                removeFromBasket={removeFromBasket}
+                basketCount={count}
+                basketTotal={total}
+                formatCurrency={formatCurrency}
+              />
+            </Fragment>
+          )}
+        />
         <Route path="/about" component={() => <About basketCount={count} />} />
       </div>
     </BrowserRouter>
