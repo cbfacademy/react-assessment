@@ -16,10 +16,7 @@ const Basket = ({basket,basketCount,basketTotal,...props}) => {
       ) : (
         <div className="empty">Sorry, no items in basket...</div>
       )}
-      <BasketTotal
-        basketTotal={basketTotal}
-        formatCurrency={props.formatCurrency}
-      />
+      <BasketTotal basketTotal={basketTotal} />
     </div>
   );
 }

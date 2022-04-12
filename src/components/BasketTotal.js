@@ -1,8 +1,8 @@
 import React from 'react';
+import { formatCurrency } from "./utils.js";
 
 const BasketTotal = (props) => {
-
-  return <div id="baskettotal">{props.formatCurrency(props.basketTotal)}</div>;
-}
+  return <div id="baskettotal">{formatCurrency(props.basketTotal)}</div>;
+};
 
 export default BasketTotal;
