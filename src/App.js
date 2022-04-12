@@ -6,49 +6,42 @@ import ProductList from './components/ProductList'
 import Basket from './components/Basket'
 import About from './pages/About'
 
-import './App.css';
-import data from './models/data.json';
+import "./App.css";
+import data from "./models/data.json";
 
 function App() {
-  
   const [items, setItems] = useState(data);
   const [basket, setBasket] = useState([]);
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState("");
   const [total, setTotal] = useState(0);
   const [count, setCount] = useState(0);
 
   const addToBasket = (id) => {
-    setBasket(basket.concat(items.filter(item => item.trackId === id)));
-    setItems([...items.map(item => {
-      if (item.trackId === id) {
-        item.inBasket = true;
-        setTotal(total + item.trackPrice);
-      }
-      return item;
-    }
-    )]);
-    setCount(count+1);
-  }
+    setBasket(basket.concat(items.filter((item) => item.trackId === id)));
+    setItems([
+      ...items.map((item) => {
+        if (item.trackId === id) {
+          item.inBasket = true;
+          setTotal(total + item.trackPrice);
+        }
+        return item;
+      }),
+    ]);
+    setCount(count + 1);
+  };
 
   const removeFromBasket = (id) => {
-    setBasket(basket.filter(item => item.trackId !== id));
-    setItems([...items.map(item => {
-      if (item.trackId === id) {
-        item.inBasket = false;
-        setTotal(total - item.trackPrice);
-      }
-      return item;
-    }
-    )]);
-    setCount(count-1);
-  }
-
-  const formatCurrency = (value) => {
-    return value.toLocaleString("en-GB", {
-      style: "currency",
-      currency: "GBP",
-      minimumFractionDigits: 2,
-    });
+    setBasket(basket.filter((item) => item.trackId !== id));
+    setItems([
+      ...items.map((item) => {
+        if (item.trackId === id) {
+          item.inBasket = false;
+          setTotal(total - item.trackPrice);
+        }
+        return item;
+      }),
+    ]);
+    setCount(count - 1);
   };
 
   async function search(value) {
@@ -93,11 +86,7 @@ function App() {
             <Fragment>
               <Header basketCount={count} />
               <Search term={term} search={search} setTerm={setTerm} />
-              <ProductList
-                items={items}
-                addToBasket={addToBasket}
-                formatCurrency={formatCurrency}
-              />
+              <ProductList items={items} addToBasket={addToBasket} />
             </Fragment>
           )}
         />
@@ -111,7 +100,6 @@ function App() {
                 removeFromBasket={removeFromBasket}
                 basketCount={count}
                 basketTotal={total}
-                formatCurrency={formatCurrency}
               />
             </Fragment>
           )}
