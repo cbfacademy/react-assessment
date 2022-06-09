@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Search from './components/Search'
-import ProductList from './components/ProductList'
-import Basket from './components/Basket'
-import About from './pages/About'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Search from "./components/Search";
+import ProductList from "./components/ProductList";
+import Basket from "./components/Basket";
+import About from "./pages/About";
 
 import "./App.css";
 import data from "./models/data.json";
@@ -79,32 +79,37 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <Fragment>
-              <Header basketCount={count} />
-              <Search term={term} search={search} setTerm={setTerm} />
-              <ProductList items={items} addToBasket={addToBasket} />
-            </Fragment>
-          )}
-        />
-        <Route
-          path="/basket"
-          render={() => (
-            <Fragment>
-              <Header basketCount={count} />
-              <Basket
-                basket={basket}
-                removeFromBasket={removeFromBasket}
-                basketCount={count}
-                basketTotal={total}
-              />
-            </Fragment>
-          )}
-        />
-        <Route path="/about" component={() => <About basketCount={count} />} />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <Fragment>
+                <Header basketCount={count} />
+                <Search term={term} search={search} setTerm={setTerm} />
+                <ProductList items={items} addToBasket={addToBasket} />
+              </Fragment>
+            }
+          />
+          <Route
+            path="/basket"
+            element={
+              <Fragment>
+                <Header basketCount={count} />
+                <Basket
+                  basket={basket}
+                  removeFromBasket={removeFromBasket}
+                  basketCount={count}
+                  basketTotal={total}
+                />
+              </Fragment>
+            }
+          />
+          <Route
+            path="/about"
+            component={() => <About basketCount={count} />}
+          />
+        </Routes>
       </div>
     </BrowserRouter>
   );
