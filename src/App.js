@@ -13,7 +13,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-         View Example Bookcase App
+         View Example Mediastore App
         </a>
       </header>
     </div>
