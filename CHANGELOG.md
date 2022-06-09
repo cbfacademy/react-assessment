@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/blackcodherbootcamp-assessments/unit04-assessment-react/compare/v1.0.4...v1.0.5) (2022-06-09)
+
+
+### Bug Fixes
+
+* removes load error ([7cb36f8](https://github.com/blackcodherbootcamp-assessments/unit04-assessment-react/commit/7cb36f863ac2812591ed8d27b3772deaf8b5d628))
+
 ### [1.0.4](https://github.com/blackcodherbootcamp-assessments/unit04-assessment-react/compare/v1.0.3...v1.0.4) (2022-04-12)
 
 
