@@ -1,5 +1,9 @@
 # React Assessment
 
+[TODO: Replace with your Netflify status badge]
+
+[TODO: Replace with a link to your Netlify deployed solution here]
+
 For your unit 4 assessment you will be building a Media Store App that allows users to search the iTunes store for music, videos, TV shows and other media types.
 
 This repository contains a basic React app. To install the basic packages needed to run the app, run the following command in your terminal:
@@ -12,13 +16,13 @@ This repository contains a basic React app. To install the basic packages needed
 
 The finished app should include the following functionality:
 
-- A user should have the ability to add and remove items from a basket. 
-- The basket should display the number of items added.
-- A user should be able to search the iTunes Search API using a text search field and review a list of results.
-- A user should be able to transfer items in the search results to and from their basket.
-- The app should have an About page explaining how to use the app and who designed it.
+1. A user should have the ability to add and remove items from a basket. 
+1. The basket should display the number of items added.
+1. A user should be able to search the iTunes Search API using a text search field and review a list of results.
+1. A user should be able to add and remove items in the search results to and from their basket.
+1. The app should have an About page explaining how to use the app and who designed it.
 
-By the due date of this assessment you must have what is stated in the [criteria, detailed below,](#assessment-criteria) pushed to GitHub ready to be marked.
+By the due date of this assessment you must have what is stated in the [criteria, detailed below,](#assessment-criteria) pushed to GitHub ready to be marked. You must also have your working code [deployed to Netlify](https://docs.netlify.com/site-deploys/create-deploys/) and your [site's status badge](https://docs.netlify.com/monitor-sites/status-badges/) added to this file (`README.md`)
 
 The tasks and homework throughout unit 4 explain how to build a __Bookcase React App__ to store books. The __Bookcase React App__ is an example of a __SPA (Single-Page App)__. The same functionality and concepts can be used to build your Media Store app for this assessment.
 
