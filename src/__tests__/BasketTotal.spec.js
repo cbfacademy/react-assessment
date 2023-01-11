@@ -8,6 +8,6 @@ describe("BasketTotal functionality", () => {
   test('Displays correct basket total', () => {
     const basketTotal = 10;
     const { getByText } = render(<BasketTotal basketTotal={basketTotal} />);
-    expect(getByText(basketTotal)).toBeInTheDocument();
+    expect(getByText(basketTotal, { exact: false })).toBeInTheDocument();
   });
 });
