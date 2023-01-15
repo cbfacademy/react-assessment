@@ -14,6 +14,7 @@ describe("Header functionality", () => {
         </Routes>
       </BrowserRouter>
     );
+    // eslint-disable-next-line testing-library/no-node-access
     expect(document.querySelectorAll("a").length).toBeGreaterThanOrEqual(3);
   });
 });
