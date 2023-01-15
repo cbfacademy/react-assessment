@@ -14,7 +14,7 @@ const Basket = ({basket,basketCount,basketTotal,...props}) => {
           <Product key={item.trackId} item={item} {...props} />
         ))
       ) : (
-        <div className="empty">Sorry, no items in basket...</div>
+        <div className="empty">Sorry, no items found...</div>
       )}
       <BasketTotal basketTotal={basketTotal} />
     </div>

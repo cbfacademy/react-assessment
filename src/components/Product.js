@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { formatCurrency } from "./utils.js";
+import React from "react";
+import PropTypes from "prop-types";
+import { formatCurrency } from "../lib/utils.js";
 
-const Product = ({ item, ...props }) => {
+const Product = ({ item, key, addToBasket, removeFromBasket, ...props }) => {
   const { trackId, artworkUrl100, trackName, longDescription, trackPrice } =
     item;
 
   return (
-    <div className={"product " + item.kind} id={props.key}>
+    <div className={"product " + item.kind}>
       <img
         src={artworkUrl100}
         alt={
@@ -29,15 +29,11 @@ const Product = ({ item, ...props }) => {
         {item.inBasket ? (
           <button
             className="remove-button"
-            onClick={() => props.removeFromBasket(trackId)}
-          >
+            onClick={() => removeFromBasket(trackId)}>
             Remove
           </button>
         ) : (
-          <button
-            className="add-button"
-            onClick={() => props.addToBasket(trackId)}
-          >
+          <button className="add-button" onClick={() => addToBasket(trackId)}>
             Add to Basket
           </button>
         )}
@@ -50,5 +46,5 @@ export default Product;
 
 //Prop Types
 Product.propTypes = {
-  item: PropTypes.object.isRequired
-}
+  item: PropTypes.object.isRequired,
+};
